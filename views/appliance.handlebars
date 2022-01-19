@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="./appliances" method="GET">
+    {{!-- <form action="./appliances" method="GET"> --}}
         <table class="results">
             <tr>
                 <th>Appliance</th>
@@ -17,12 +17,12 @@
             </tr>
             {{#each allApps}}
             <tr>
-                <td>{{appliance}}</td>
-                <td>{{Rate}}</td>
+                <td>{{name}}</td>
+                <td>{{rate}}</td>
             </tr>
             {{/each}}
         </table>
-    </form>
+    {{!-- </form> --}}
 </body>
 
 </html>

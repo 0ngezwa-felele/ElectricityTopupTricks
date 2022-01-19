@@ -9,7 +9,7 @@ module.exports = function(pool) {
 
 	// for a given street show all the meters and their balances
 	async function streetMeters(streetId) {
-		let allMeters = await pool.query('select id, balance from electricity_meteres where street_number = $1',[streetId])
+		let allMeters = await pool.query('select * from electricity_meter where street_number = $1',[streetId])
 		return allMeters.rows
 
 	}

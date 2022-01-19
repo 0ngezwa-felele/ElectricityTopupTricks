@@ -9,25 +9,38 @@
 </head>
 
 <body>
-    {{#each meters}}
-    {{!-- <form action="/streetMeter/:{{id}}" method="GET"> --}}
 
+
+    {{!-- {{#each m}}
+
+    {{id}} {{balance}}
+
+    {{/each}} --}}
+
+    <table>
         <tr>
-            {{!-- <td>
-                {{name}}
-            </td> --}}
+            <th>ID</th>
+            <th>Balance</th>
+        </tr>
+        {{#each m}}
+        <tr>
             <td>
                 {{id}}
             </td>
             <td>
-                {{name}}
+                {{balance}}
             </td>
             <td>
-                <a href="/streetMeters/{{id}}">Meters in street</a>
+                <a href="/streetMeters/{{id}}"></a>
             </td>
         </tr>
-        {{/each}}/
-    </form>
+        {{/each}}
+    </table>
+
+
+
+
+
 </body>
 
 </html>

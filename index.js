@@ -39,8 +39,16 @@ app.get('/streets', async function (req, res) {
 		streets
 	});
 });
+app.get('/appliance', async function (req, res) {
+	let all = await electricityMeters.appliances();
+	console.log(all);
+	res.render('appliance', {
+		allApps:all
+	});
+});
 
-app.get('/streetMeter/:street_id', async function (req, res) {
+
+app.get('/streetMeters/:street_id', async function (req, res) {
 
 
 	// use the streetMeters method in the factory function...
@@ -52,10 +60,10 @@ app.get('/streetMeter/:street_id', async function (req, res) {
 
 
 	var list = req.params.street_id
-	await ElectricityMeters.streetmeters()
-	console.log(list + "wwwwwww")
+	var metersList = await electricityMeters.streetMeters(list)
+	console.log(metersList + "wwwwwww")
 	res.render('streetMeter', {
-		meters: list
+		m: metersList
 	});
 });
 
