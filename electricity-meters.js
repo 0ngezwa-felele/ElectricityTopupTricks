@@ -24,6 +24,7 @@ module.exports = function(pool) {
 	// increase the meter balance for the meterId supplied
 	async function topupElectricity(meterId, units) {
 		let newBalance = await pool.query('update electricity_meter set balance = balance+ $2 where id = $1',[meterId, units])
+		return newBalance
 	}
 	
 	// return the data for a given balance
@@ -36,8 +37,11 @@ module.exports = function(pool) {
 	async function useElectricity(meterId, units) {
 		let usage = await pool.query('select sum(balance - units)from electricity_meter where id = $1'[meterId,units])
 	}
-	async function totalStreetBalance(street_number){
-        var totalBal = await pool.query('select sum(balance) from electricity_meter where street_number = $1 order by street_id',[street_number]);
+	async function totalStreetBalance(){
+
+
+
+        var totalBal = await pool.query('select sum(balance) from electricity_meter where street_number = $1',);
         return totalBal.rows
     }
 

@@ -46,6 +46,15 @@ app.get('/appliance', async function (req, res) {
 		allApps:all
 	});
 });
+app.get('/balances', async function (req, res) {
+	var streetBalance = req.params.street_number
+	console.log(streetBalance)
+	let totalBal = await electricityMeters.totalStreetBalance(streetBalance);
+	console.log(totalBal);
+	res.render('balances', {
+		streetBal:streetBalance
+	});
+});
 
 
 app.get('/streetMeters/:street_id', async function (req, res) {
