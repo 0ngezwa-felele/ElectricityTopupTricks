@@ -9,10 +9,11 @@ const PORT = process.env.PORT || 3019;
 const ElectricityMeters = require('./electricity-meters');
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/topups_db';
-ssl: {rejectUnauthorized: false}
+
 
 const pool = new Pool({
-	connectionString
+	connectionString,
+	ssl: {rejectUnauthorized: false}
 });
 
 // enable the req.body object - to allow us to use HTML forms
