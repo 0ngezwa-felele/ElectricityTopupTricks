@@ -33,32 +33,57 @@ app.get('/', function (req, res) {
 });
 
 app.get('/streets', async function (req, res) {
-	const streets = await electricityMeters.streets();
-	console.log(streets);
-	res.render('streets', {
-		streets
-	});
+	try {
+		const streets = await electricityMeters.streets();
+		console.log(streets);
+		res.render('streets', {
+			streets
+		});
+
+	} catch (error) {
+		console.log(error);
+	}
 });
 app.get('/appliance', async function (req, res) {
-	let all = await electricityMeters.appliances();
-	console.log(all);
-	res.render('appliance', {
-		allApps:all
-	});
+	try {
+		let all = await electricityMeters.appliances();
+		console.log(all);
+		res.render('appliance', {
+			allApps: all
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
+
 });
 app.get('/balances', async function (req, res) {
-	var streetBalance = req.params.street_number
-	console.log(streetBalance)
-	let totalBal = await electricityMeters.totalStreetBalance(streetBalance);
-	console.log(totalBal);
-	res.render('balances', {
-		streetBal:streetBalance
-	});
+	try {
+		var streetBalance = req.params.street_number
+		console.log(streetBalance)
+		let totalBal = await electricityMeters.totalStreetBalance(streetBalance);
+		console.log(totalBal);
+		res.render('balances', {
+			streetBal: streetBalance
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
 });
 
 
 app.get('/streetMeters/:street_id', async function (req, res) {
+	try {
+		var list = req.params.street_id
+		var metersList = await electricityMeters.streetMeters(list)
+		console.log(metersList + "wwwwwww")
+		res.render('streetMeter', {
+			m: metersList
+		});
+	} catch (error) {
 
+	}
 
 	// use the streetMeters method in the factory function...
 	// send the street id in as sent in by the URL parameter street_id - req.params.street_id
@@ -68,12 +93,7 @@ app.get('/streetMeters/:street_id', async function (req, res) {
 	// show the street number and name and the meter balance
 
 
-	var list = req.params.street_id
-	var metersList = await electricityMeters.streetMeters(list)
-	console.log(metersList + "wwwwwww")
-	res.render('streetMeter', {
-		m: metersList
-	});
+
 });
 
 app.get('/meter/use/:meter_id', async function (req, res) {
