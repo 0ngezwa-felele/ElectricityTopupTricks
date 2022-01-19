@@ -3,7 +3,7 @@ const pg = require('pg');
 const Pool = pg.Pool;
 const ElectricityMeters = require('../electricity-meters');
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://topup:topup00@localhost:5432/topups';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/topups_db_tests';
 
 const pool = new Pool({
     connectionString  
@@ -13,6 +13,7 @@ describe("The Electricity meter", function() {
 
 	this.beforeAll(function() {
 		pool.query(`update electricity_meter set balance = 50`);
+
 	});
 
 	it("should see all the streets", async function() {
